@@ -14,6 +14,7 @@ from core.components.menu.menu import Menu
 from core.components.sprite import SpriteGroup, MenuSpriteGroup
 from core.components.technique import Technique
 from core.components.ui.draw import GraphicBox
+from core.components.game_event import *
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -119,6 +120,11 @@ class MainCombatMenuState(PopUpMenu):
             self.game.pop_state()  # close the monster action menu
 
         choose_item()
+
+    def process_event_hook(self, event):
+        print("This is in COMBAT 99999999999999999999999999999999999999")
+        if (event.type == NORTH_EVENT):
+            self.run()
 
     def open_technique_menu(self):
         """ Open menus to choose a Technique to use

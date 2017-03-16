@@ -386,6 +386,10 @@ class Menu(state.State):
         """
         return self.window.calc_inner_rect(self.rect)
 
+    def process_event_hook(self, event):
+        print("THIS IS IN MENU *8888888888888888888888888888888888888")
+
+
     def process_event(self, event):
         """ Process pygame input events
 
@@ -396,6 +400,8 @@ class Menu(state.State):
         :param event: pygame.Event
         :returns: None
         """
+        self.process_event_hook(event)
+
         if event.type == MENU_EVENT:
             self.close()
             return
@@ -403,7 +409,7 @@ class Menu(state.State):
         if event.type == MONSTERS_EVENT:
             self.open_monster_menu()
             return
-			
+
 
 
         if event.type == pygame.KEYDOWN:

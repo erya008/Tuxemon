@@ -527,13 +527,13 @@ class Control(StateManager):
         :rtype: collections.Iterable[pygame.event.Event]
 
         """
-        if game_event.type in VOICE_EVENT_SET:
-            yield game_event
+        #if game_event.type in VOICE_EVENT_SET:
+        #    yield game_event
 
     #doesnt actually parse anything, just test code
     @staticmethod
     def get_voice_event(game_event):
-        if game_event.type in [GAME_EVENT, MENU_EVENT]:
+        if game_event.type in VOICE_EVENT_SET
             yield game_event
 
 

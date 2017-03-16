@@ -47,7 +47,7 @@ def speech_thread():
 
             print(len(text))
 
-            parse_speech(text, result)
+            parse_speech(text)
             #if (text == 'open' or text == 'okay'):
             #    print("matched event")
             #    pygame.event.post(pygame.event.Event(MENU_EVENT))

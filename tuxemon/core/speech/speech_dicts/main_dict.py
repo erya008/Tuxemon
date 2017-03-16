@@ -44,37 +44,10 @@ def numb(var):
 
 
 
-def parse_speech(textKey, text):
-    global t
-    global numbers
-    global my_dict
-    i=0
-    textKey_L = textKey.lower()
-    words = textKey_L.split()
-    for i in range(0,2):
-    #for word in numbers:
-    #    if word in numbers:
-            #numb(word)
-        for word in words:
-            if word in my_dict:
-
-                     t=int(my_dict[word])
-                     print("hello")
-                     print(t)
-            if word in speech_dictionary:
-                    print(word)
-                    start = time.time()
-                    start1=int(round(time.time() * 1000))
-                    time.clock()
-                    elapsed = 0
-                    seconds=10*t*10
-                    while elapsed < seconds:
-                        print(seconds)
-                        elapsed = int(round(time.time() * 1000)) -start1
-                        pygame.event.post(speech_dictionary[word](text))
-
-                        print(t)
-                        print "loop cycle time: %f, seconds count: %02d" % (time.clock() , elapsed)
-                        time.sleep(.1*t)
-                    pygame.event.post(pygame.event.Event(STOP_EVENT))
-                    i+=1
+def parse_speech(text):
+    print("TextKey: " + text)
+    text_L = text.lower()
+    words = text_L.split()
+    for word in words:
+        if (word in speech_dictionary):
+            pygame.event.post(speech_dictionary[word](text))

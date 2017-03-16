@@ -10,48 +10,67 @@ south_synonyms  = ["south", "now","so","southbound","down"]
 west_synonyms   = ["west","westbound","left"]
 
 
+number_dict ={"one":1,"two":2,"three":3,"four":4,"five":5,"six":6,"seven":7}
 
 
-def stopwatch(seconds):
-    start = time.time()
-    time.clock()
-    elapsed = 0
-    while elapsed < seconds:
-        elapsed = time.time() - start
-        pygame.event.Event(NORTH_EVENT)
-
-        print "loop cycle time: %f, seconds count: %02d" % (time.clock() , elapsed)
-        time.sleep(1)
-
-def north_event(speech_text):
-
+def north_event():
     return pygame.event.Event(NORTH_EVENT)
 
-
-def east_event(speech_text):
+def east_event():
     return pygame.event.Event(EAST_EVENT)
 
-def south_event(speech_text):
+def south_event():
     return pygame.event.Event(SOUTH_EVENT)
 
-def west_event(speech_text):
+def west_event():
     return pygame.event.Event(WEST_EVENT)
 
 
-
+def move_event(speech_text):
+    list_of_moves = []
+    current_state = ""
+    continuous_move = True
+    for word in speech_text:
+        if (word.lower() in north_synonyms):
+            current_state = "N"
+        elif (word.lower() in south_synonyms):
+            current_state = "S"
+        elif (word.lower() in east_synonyms):
+            current_state = "E"
+        elif (word.lower() in west_synonyms):
+            current_state = "W"
+        elif (word.lower() in number_dict):
+            continuous_move = False
+            for i in range (0, number_dict[word.lower()]):
+                list_of_moves.append(current_state)
+        else:
+            break
+    if (continuous_move):
+        if (current_state == "N"):
+            return north_event()
+        elif (current_state == "S"):
+            return south_event()
+        elif (current_state == "E"):
+            return east_event()
+        elif (current_state == "W"):
+            return west_event()
+    else:
+        print("found a move list")
+        print(list_of_moves)
+        return pygame.event.Event(MOVE_EVENT, move_list=list_of_moves)
 
 
 for key in north_synonyms:
-    speech_dictionary[key] = north_event
+    speech_dictionary[key] = move_event
 
 
 for key in east_synonyms:
-    speech_dictionary[key] = east_event
+    speech_dictionary[key] = move_event
 
 
 for key in south_synonyms:
-    speech_dictionary[key] = south_event
+    speech_dictionary[key] = move_event
 
 
 for key in west_synonyms:
-    speech_dictionary[key] = west_event
+    speech_dictionary[key] = move_event

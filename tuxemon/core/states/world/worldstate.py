@@ -384,7 +384,7 @@ class WorldState(state.State):
 
 
 
-
+        
 
         elif event.type == EAST_EVENT:
             self.stop_moving()

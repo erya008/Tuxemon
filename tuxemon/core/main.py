@@ -30,10 +30,11 @@
 from collections import namedtuple
 from functools import partial
 from . import prepare
-
+from core.components.game_event import *
 from .speech import speech_thread
 
 import threading
+from threading import Timer
 
 def worker():
     while(1):
@@ -86,6 +87,15 @@ def main():
     except (KeyboardInterrupt, SystemExit):
         t.stop()
         sys.exit()
+
+
+
+    def TEST_FUNC():
+        print("this is working")
+        pygame.event.Event(MOVE_EVENT, move_list = [("NORTH", 5)])
+
+    t = Timer(15, TEST_FUNC)
+    t.start();
 
     # block of code useful for testing
     if 0:

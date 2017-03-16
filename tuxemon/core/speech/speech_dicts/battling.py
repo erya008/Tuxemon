@@ -11,6 +11,7 @@ def fight_event(speech_text):
 def item_event(speech_text):
     return pygame.event.Event(ITEM_EVENT)
 def run_event(speech_text):
+    print("CREATED A RUN EVENT")
     return pygame.event.Event(RUN_EVENT)
 def swap_event(speech_text):
     return pygame.event.Event(SWAP_EVENT)

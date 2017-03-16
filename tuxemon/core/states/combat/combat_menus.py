@@ -123,6 +123,9 @@ class MainCombatMenuState(PopUpMenu):
 
     def process_event_hook(self, event):
         print("This is in COMBAT 99999999999999999999999999999999999999")
+        if (event.type == MENU_EVENT):
+            if (event.action_name == "run"):
+                self.run()
         if (event.type == RUN_EVENT):
             self.run()
         elif (event.type == MONSTERS_EVENT):

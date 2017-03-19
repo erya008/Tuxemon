@@ -28,6 +28,7 @@
 # core.states.world Handles the world map and player movement.
 #
 #
+from __future__ import print_function
 from __future__ import division
 
 # Import various python libraries
@@ -46,6 +47,11 @@ from core import tools
 
 from core.components import db
 from core.components.locale import translator
+from threading import Timer
+
+from time import sleep
+from random import random
+from threading import Timer
 
 import pygame
 
@@ -307,34 +313,34 @@ class WorldState(state.State):
         # tiles in size, we add 1 to the 'y' position so the player's actual position will be on the bottom
         # portion of the sprite.
         self.player1.tile_pos = (float((self.player1.position[0] - self.global_x)) / float(
-            self.tile_size[0]), (float((self.player1.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
+        self.tile_size[0]), (float((self.player1.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
 
 
 
-    def stopwatch(self,seconds):
-        start = time.time()
-        time.clock()
-        elapsed = 0
-        while elapsed < seconds:
-            elapsed = time.time() - start
-            self.stop_moving()
-            self.player1.direction["up"] = True
-            self.player1.facing = "up"
-
-            print "loop cycle time: %f, seconds count: %02d" % (time.clock() , elapsed)
-            time.sleep(1)
-        elapsed = 0
-        print(elapsed)
-        while elapsed < seconds:
-            elapsed = time.time() - start
-            print(elapsed)
-            self.stop_moving()
-            self.player1.direction["down"] = True
-            time.sleep(1)
-            self.player1.facing = "down"
-            time.sleep(1)
-            print "loop cycle time: %f, seconds count: %02d" % (time.clock() , elapsed)
-            time.sleep(1)
+# #    def stopwatch(self,seconds):
+#     #    start = time.time()
+#         time.clock()
+#         elapsed = 0
+#         while elapsed < seconds:
+#             elapsed = time.time() - start
+#             self.stop_moving()
+#             self.player1.direction["up"] = True
+#             self.player1.facing = "up"
+#
+#             print "loop cycle time: %f, seconds count: %02d" % (time.clock() , elapsed)
+#             time.sleep(1)
+#         elapsed = 0
+#         print(elapsed)
+#         while elapsed < seconds:
+#             elapsed = time.time() - start
+#             print(elapsed)
+#             self.stop_moving()
+#             self.player1.direction["down"] = True
+#             time.sleep(1)
+#             self.player1.facing = "down"
+#             time.sleep(1)
+#             print "loop cycle time: %f, seconds count: %02d" % (time.clock() , elapsed)
+#             time.sleep(1)
 
 
     def draw(self, surface):
@@ -384,7 +390,62 @@ class WorldState(state.State):
 
 
 
-        
+
+        elif event.type == MOVE_EVENT:
+            i=0
+            print("start")
+            #e.move_list
+
+            a=event.move_list
+            print(a)
+
+            def con_moves(i):
+                print(i)
+                if (i == len(a)):
+                    self.stop_moving()
+                elif(a[i]=='S'):
+                    self.stop_moving()
+                    self.player1.direction["down"] = True
+                    self.player1.facing = "down"
+
+
+                elif(a[i]=='N'):
+                    self.stop_moving()
+                    self.player1.direction["up"] = True
+                    self.player1.facing = "up"
+
+
+                elif(a[i]=='E'):
+                    self.stop_moving()
+                    self.player1.direction["right"] = True
+                    self.player1.facing = "right"
+
+                elif(a[i]=='W'):
+                    self.stop_moving()
+                    self.player1.direction["left"] = True
+                    self.player1.facing = "left"
+
+
+
+                if i < len(a) :
+                    #time.clock()
+                    #elapsed = 0
+                    #while elapsed < seconds:
+                        #elapsed = time.time() - start
+                    print("we are here")
+
+                    t = Timer(.4,con_moves,args = (i+1,))
+                    t.start();
+                else:
+                    #t =Timer(.1,self.stop_moving, args = (self,))
+                    #self.stop_moving()
+
+                    print("we are done moving")
+
+            con_moves(0)
+
+
+
 
         elif event.type == EAST_EVENT:
             self.stop_moving()
@@ -455,6 +516,7 @@ class WorldState(state.State):
 
 
     def stop_moving(self):
+        print("we are in stop moving")
         self.player1.direction["up"] = False;
         self.player1.direction["right"] = False;
         self.player1.direction["down"] = False;

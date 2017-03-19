@@ -5,12 +5,14 @@ from functools import partial
 
 import pygame
 
+
 from core import prepare
 from core.tools import open_dialog
 from core.components.event.actions import core as core_actions
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu
 from core.components.locale import translator
+from core.components.game_event import *
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -42,6 +44,27 @@ class WorldMenuState(Menu):
     shrink_to_items = True    # this menu will shrink, but size is adjusted when opened
     animate_contents = True
 
+    def process_event_hook(self, event):
+        print("This is in world_menus")
+        if(event.type == MENU_EVENT):
+            if(event.action_name == "open"):
+                self.close()
+            elif (event.action_name == "monsters"):
+                self.open_monster_menu()
+            elif (event.action_name == "bag"):
+                print("IN BAG STATEMENT")
+                self.game.replace_state("ItemMenuState")
+                #change_state("ItemMenuState")
+            elif (event.action_name == "load"):
+                print("IN LOAD STATEMENT")
+                self.game.replace_state("LoadMenuState")
+            elif (event.action_name == "save"):
+                print("IN SAVE STATEMENT")
+                self.game.replace_state("SaveMenuState")
+            elif (event.action_name == "exit"):
+                print("IN EXIT STATEMENT")
+                core_actions.Core().quit(self.game, None, {})
+
     def startup(self, *args, **kwargs):
         super(WorldMenuState, self).startup(*args, **kwargs)
 
@@ -66,6 +89,7 @@ class WorldMenuState(Menu):
             ('exit', exit_game)
         )
         add_menu_items(self, menu_items_map)
+
 
     def open_monster_menu(self):
         from core.states.monster import MonsterMenuState
@@ -105,6 +129,8 @@ class WorldMenuState(Menu):
             # call the super class to re-render the menu with new positions
             # TODO: maybe add more hooks to eliminate this runtime patching
             MonsterMenuState.on_menu_selection_change(monster_menu)
+
+
 
         def select_first_monster():
             # TODO: API for getting the game player obj

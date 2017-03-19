@@ -387,7 +387,8 @@ class Menu(state.State):
         return self.window.calc_inner_rect(self.rect)
 
     def process_event_hook(self, event):
-        print("THIS IS IN MENU *8888888888888888888888888888888888888")
+        print("in menu event hook")
+
 
 
     def process_event(self, event):

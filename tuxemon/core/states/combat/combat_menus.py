@@ -123,7 +123,7 @@ class MainCombatMenuState(PopUpMenu):
 
     def process_event_hook(self, event):
         print("This is in COMBAT 99999999999999999999999999999999999999")
-        if (event.type == MENU_EVENT and event.target_menu.contains("combat_menu")):
+        if (event.type == MENU_EVENT and "combat_menu" in event.target_menu):
             if (event.menu_item == "run"):
                 self.run()
             elif (event.menu_item == "item"):
@@ -141,7 +141,8 @@ class MainCombatMenuState(PopUpMenu):
 
         def choose_technique():
             # open menu to choose technique
-            menu = self.game.push_state("Menu")
+            # menu = self.game.push_state("Menu")
+            menu = self.game.push_state("TechniqueMenuState")
             menu.shrink_to_items = True
 
             # add techniques to the menu
@@ -163,7 +164,8 @@ class MainCombatMenuState(PopUpMenu):
             combat_state = self.game.get_state_name("CombatState")
             state = self.game.push_state("CombatTargetMenuState",player=combat_state.players[0],
                                          user=self.monster, action=technique)
-            state.on_menu_selection = partial(enqueue_technique, technique)
+            #state.on_menu_selection = partial(enqueue_technique, technique)
+            enqueue_technique(technique, state.get_selected_item())
 
         def enqueue_technique(technique, menu_item):
             # enqueue the technique

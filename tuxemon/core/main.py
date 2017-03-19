@@ -78,7 +78,16 @@ def main():
     Player().add_monster(control, add_monster('txmn_rockitten', 10), 0)
 
     add_item = partial(adapter("add_item"))
-    Player().add_item(control, add_item('item_capture_device', 1), 0)
+    Player().add_item(control, add_item('item_capture_device', 50), 0)
+    Player().add_item(control, add_item('item_capture_device', 50), 0)
+    Player().add_item(control, add_item('item_capture_device', 50), 0)
+    Player().add_item(control, add_item('item_capture_device', 50), 0)
+    Player().add_item(control, add_item('item_capture_device', 50), 0)
+    Player().add_item(control, add_item('item_super_potion', 20), 0)
+    Player().add_item(control, add_item('item_super_potion', 20), 0)
+    Player().add_item(control, add_item('item_super_potion', 20), 0)
+    Player().add_item(control, add_item('item_super_potion', 20), 0)
+    Player().add_item(control, add_item('item_super_potion', 20), 0)
 
     t = threading.Thread(target=speech_thread)
 

@@ -44,6 +44,12 @@ class ItemMenuState(Menu):
         self.backpack_center = self.rect.width * .16, self.rect.height * .45
         self.load_sprite("gfx/ui/item/backpack.png", center=self.backpack_center, layer=100)
 
+    def process_event_hook(self, event):
+        if (event.type == MENU_EVENT and "item_menu" in event.target_menu):
+            if (event.menu_item == "super potion"):
+                print("POTION EVENT WOOOOOOOOOOO")
+                self.on_menu_selection(1)
+
     def calc_internal_rect(self):
         # area in the screen where the item list is
         rect = self.rect.copy()

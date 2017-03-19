@@ -90,12 +90,12 @@ def main():
 
 
 
-    def TEST_FUNC():
-        print("this is working")
-        pygame.event.Event(MOVE_EVENT, move_list = [("NORTH", 5)])
-
-    t = Timer(15, TEST_FUNC)
-    t.start();
+    # def TEST_FUNC():
+    #     print("this is working")
+    #     pygame.event.Event(MOVE_EVENT, move_list = ["S", "S", "E", "W", "N"])
+    #
+    # t = Timer(15, TEST_FUNC)
+    # t.start();
 
     # block of code useful for testing
     if 0:

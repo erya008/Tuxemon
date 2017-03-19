@@ -123,20 +123,8 @@ class MainCombatMenuState(PopUpMenu):
 
     def process_event_hook(self, event):
         print("This is in COMBAT 99999999999999999999999999999999999999")
-        # if (event.type == MENU_EVENT):
-        #     if (event.action_name == "run"):
-        #         self.run()
-        # if (event.type == BATTLE_EVENT):
-        #     if (event.action_name == "run"):
-        #         self.run()
-        #     elif (event.action_name == "item"):
-        #         self.open_item_menu()
-        #     elif (event.action_name == "swap"):
-        #         self.open_swap_menu()
-        #     elif (event.action_name == "fight"):
-        #         self.open_technique_menu()
-        if (event.type == MENU_EVENT && event.target_menu.contains("combat_menu")):
-            if (event.menu_item == "run")
+        if (event.type == MENU_EVENT and event.target_menu.contains("combat_menu")):
+            if (event.menu_item == "run"):
                 self.run()
             elif (event.menu_item == "item"):
                 self.open_item_menu()

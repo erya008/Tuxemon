@@ -533,11 +533,9 @@ class Control(StateManager):
     #doesnt actually parse anything, just test code
     @staticmethod
     def get_voice_event(game_event):
-        print("Getting voice event")
-        print(game_event.type)
+
         #print(len(VOICE_EVENT_SET))
         if game_event.type in VOICE_EVENT_SET:
-            print("FOUND VOICE EVNET")
             yield game_event
 
 

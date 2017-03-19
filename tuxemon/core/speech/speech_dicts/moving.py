@@ -14,16 +14,16 @@ number_dict ={"one":1,"two":2,"three":3,"four":4,"five":5,"six":6,"seven":7}
 
 
 def north_event():
-    return pygame.event.Event(NORTH_EVENT)
+    return pygame.event.Event(SIMPLE_MOVE_EVENT, direction = "N")
 
 def east_event():
-    return pygame.event.Event(EAST_EVENT)
+    return pygame.event.Event(SIMPLE_MOVE_EVENT, direction = "E")
 
 def south_event():
-    return pygame.event.Event(SOUTH_EVENT)
+    return pygame.event.Event(SIMPLE_MOVE_EVENT, direction = "S")
 
 def west_event():
-    return pygame.event.Event(WEST_EVENT)
+    return pygame.event.Event(SIMPLE_MOVE_EVENT, direction = "W")
 
 
 def move_event(speech_text):
@@ -57,7 +57,7 @@ def move_event(speech_text):
     else:
         print("found a move list")
         print(list_of_moves)
-        return pygame.event.Event(MOVE_EVENT, move_list=list_of_moves)
+        return pygame.event.Event(COMPLEX_MOVE_EVENT, move_list=list_of_moves)
 
 
 for key in north_synonyms:

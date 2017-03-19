@@ -273,8 +273,8 @@ class Control(StateManager):
                 yield game_event
 
             # Loop through our user defined events
-            for game_event in self.get_user_event(pg_event):
-                yield game_event
+            #for game_event in self.get_user_event(pg_event):
+            #    yield game_event
 
     def process_events(self, events):
         """ Process all events for this frame.  This is WIP.
@@ -527,13 +527,17 @@ class Control(StateManager):
         :rtype: collections.Iterable[pygame.event.Event]
 
         """
-        if game_event.type in VOICE_EVENT_SET:
-            yield game_event
+        #if game_event.type in VOICE_EVENT_SET:
+        #    yield game_event
 
     #doesnt actually parse anything, just test code
     @staticmethod
     def get_voice_event(game_event):
-        if game_event.type in [GAME_EVENT, MENU_EVENT]:
+        print("Getting voice event")
+        print(game_event.type)
+        #print(len(VOICE_EVENT_SET))
+        if game_event.type in VOICE_EVENT_SET:
+            print("FOUND VOICE EVNET")
             yield game_event
 
 

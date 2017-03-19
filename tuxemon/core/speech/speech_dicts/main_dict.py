@@ -14,4 +14,5 @@ def parse_speech(text):
     words = text_L.split()
     for i in range (0, len(words)):
         if (words[i] in speech_dictionary):
+            print("Posting: " + words[i])
             pygame.event.post(speech_dictionary[words[i]](words[i:]))

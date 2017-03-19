@@ -387,7 +387,7 @@ class Menu(state.State):
         return self.window.calc_inner_rect(self.rect)
 
     def process_event_hook(self, event):
-        return
+        pass
 
     def process_event(self, event):
         """ Process pygame input events

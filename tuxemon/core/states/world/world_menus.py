@@ -45,24 +45,18 @@ class WorldMenuState(Menu):
     animate_contents = True
 
     def process_event_hook(self, event):
-        print("This is in world_menus")
         if(event.type == MENU_EVENT):
-            if(event.action_name == "open"):
+            if(event.menu_item == "open"):
                 self.close()
-            elif (event.action_name == "monsters"):
+            elif (event.menu_item == "monsters"):
                 self.open_monster_menu()
-            elif (event.action_name == "bag"):
-                print("IN BAG STATEMENT")
+            elif (event.menu_item == "bag"):
                 self.game.replace_state("ItemMenuState")
-                #change_state("ItemMenuState")
-            elif (event.action_name == "load"):
-                print("IN LOAD STATEMENT")
+            elif (event.menu_item == "load"):
                 self.game.replace_state("LoadMenuState")
-            elif (event.action_name == "save"):
-                print("IN SAVE STATEMENT")
+            elif (event.menu_item == "save"):
                 self.game.replace_state("SaveMenuState")
-            elif (event.action_name == "exit"):
-                print("IN EXIT STATEMENT")
+            elif (event.menu_item == "exit"):
                 core_actions.Core().quit(self.game, None, {})
 
     def startup(self, *args, **kwargs):

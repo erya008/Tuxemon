@@ -392,7 +392,58 @@ class WorldState(state.State):
 
 
 
-        
+        elif event.type == MOVE_EVENT:
+            i=0
+            print("start")
+            #e.move_list
+
+            a=event.move_list
+            print(a)
+
+            def con_moves(i):
+                print(i)
+                if (i == len(a)):
+                    self.stop_moving()
+                elif(a[i]=='S'):
+                    self.stop_moving()
+                    self.player1.direction["down"] = True
+                    self.player1.facing = "down"
+
+
+                elif(a[i]=='N'):
+                    self.stop_moving()
+                    self.player1.direction["up"] = True
+                    self.player1.facing = "up"
+
+
+                elif(a[i]=='E'):
+                    self.stop_moving()
+                    self.player1.direction["right"] = True
+                    self.player1.facing = "right"
+
+                elif(a[i]=='W'):
+                    self.stop_moving()
+                    self.player1.direction["left"] = True
+                    self.player1.facing = "left"
+
+
+
+                if i < len(a) :
+                    #time.clock()
+                    #elapsed = 0
+                    #while elapsed < seconds:
+                        #elapsed = time.time() - start
+                    print("we are here")
+
+                    t = Timer(.4,con_moves,args = (i+1,))
+                    t.start();
+                else:
+                    #t =Timer(.1,self.stop_moving, args = (self,))
+                    #self.stop_moving()
+
+                    print("we are done moving")
+
+            con_moves(0)
 
 
 

@@ -5,12 +5,14 @@ from functools import partial
 
 import pygame
 
+
 from core import prepare
 from core.tools import open_dialog
 from core.components.event.actions import core as core_actions
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu
 from core.components.locale import translator
+from core.components.game_event import *
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -42,6 +44,21 @@ class WorldMenuState(Menu):
     shrink_to_items = True    # this menu will shrink, but size is adjusted when opened
     animate_contents = True
 
+    def process_event_hook(self, event):
+        if(event.type == MENU_EVENT):
+            if(event.menu_item == "open"):
+                self.close()
+            elif (event.menu_item == "monsters"):
+                self.open_monster_menu()
+            elif (event.menu_item == "bag"):
+                self.game.replace_state("ItemMenuState")
+            elif (event.menu_item == "load"):
+                self.game.replace_state("LoadMenuState")
+            elif (event.menu_item == "save"):
+                self.game.replace_state("SaveMenuState")
+            elif (event.menu_item == "exit"):
+                core_actions.Core().quit(self.game, None, {})
+
     def startup(self, *args, **kwargs):
         super(WorldMenuState, self).startup(*args, **kwargs)
 
@@ -66,6 +83,7 @@ class WorldMenuState(Menu):
             ('exit', exit_game)
         )
         add_menu_items(self, menu_items_map)
+
 
     def open_monster_menu(self):
         from core.states.monster import MonsterMenuState
@@ -105,6 +123,8 @@ class WorldMenuState(Menu):
             # call the super class to re-render the menu with new positions
             # TODO: maybe add more hooks to eliminate this runtime patching
             MonsterMenuState.on_menu_selection_change(monster_menu)
+
+
 
         def select_first_monster():
             # TODO: API for getting the game player obj

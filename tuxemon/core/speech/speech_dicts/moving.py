@@ -10,7 +10,15 @@ south_synonyms  = ["south", "now","so","southbound","down"]
 west_synonyms   = ["west","westbound","left"]
 
 
-number_dict ={"one":1,"two":2,"three":3,"four":4,"five":5,"six":6,"seven":7}
+number_dict ={"one":1,
+    "two":2,
+    "to":2,
+    "too":2,
+    "three":3,
+    "four":4,
+    "five":5,
+    "six":6,
+    "seven":7}
 
 
 def north_event():
@@ -31,6 +39,7 @@ def move_event(speech_text):
     current_state = ""
     continuous_move = True
     for word in speech_text:
+        print(word)
         if (word.lower() in north_synonyms):
             current_state = "N"
         elif (word.lower() in south_synonyms):

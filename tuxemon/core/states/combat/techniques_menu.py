@@ -31,11 +31,14 @@ class TechniqueMenuState(Menu):
 
     def process_event_hook(self, event):
         print("inside tech procc")
-        if (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE):
-        #if (event.type == MENU_EVENT and "technique_menu" in event.target_menu):
+        #if (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE):
+        if (event.type == MENU_EVENT and "technique_menu" in event.target_menu):
             print("in the handler!!!!!!!!!!!!")
+            print("Looking for move: " + event.technique_name)
             for i in range(0, len(self.menu_items)):
-                if (event.technique_name == self.menu_items.game_object.name):
+                print("Item name: " + self.menu_items[i].game_object.name)
+
+                if (event.technique_name == self.menu_items[i].game_object.name):
                     print("Using " + event.technique_name)
-                    self.change_selection(0)
+                    self.change_selection(i)
                     self.on_menu_selection(self.get_selected_item())

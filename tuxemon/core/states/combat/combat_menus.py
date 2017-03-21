@@ -15,6 +15,7 @@ from core.components.sprite import SpriteGroup, MenuSpriteGroup
 from core.components.technique import Technique
 from core.components.ui.draw import GraphicBox
 from core.components.game_event import *
+from threading import Timer
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -164,7 +165,20 @@ class MainCombatMenuState(PopUpMenu):
             state = self.game.push_state("CombatTargetMenuState",player=combat_state.players[0],
                                          user=self.monster, action=technique)
             #state.on_menu_selection = partial(enqueue_technique, technique)
-            enqueue_technique(technique, state.get_selected_item())
+            #state.change_selection(0);
+
+            target = None
+            for player, monsters in combat_state.monsters_in_play.items():
+                for monster in monsters:
+
+                    # TODO: more targeting classes
+                    if player != combat_state.players[0]:
+                        item = MenuItem(None, None, None, monster)
+                        target = item
+
+            print(target)
+
+            Timer(0.1, enqueue_technique, args = (technique, target)).start()
 
         def enqueue_technique(technique, menu_item):
             # enqueue the technique

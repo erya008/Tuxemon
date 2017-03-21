@@ -34,5 +34,8 @@ class TechniqueMenuState(Menu):
         if (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE):
         #if (event.type == MENU_EVENT and "technique_menu" in event.target_menu):
             print("in the handler!!!!!!!!!!!!")
-            self.change_selection(0)
-            self.on_menu_selection(self.get_selected_item())
+            for i in range(0, len(self.menu_items)):
+                if (event.technique_name == self.menu_items.game_object.name):
+                    print("Using " + event.technique_name)
+                    self.change_selection(0)
+                    self.on_menu_selection(self.get_selected_item())

@@ -132,6 +132,10 @@ class MainCombatMenuState(PopUpMenu):
                 self.open_swap_menu()
             elif (event.menu_item == "fight"):
                 self.open_technique_menu()
+        elif (event.type == MENU_EVENT and "technique_menu" in event.target_menu):
+            print("we made bois")
+            self.open_technique_menu()
+            self.game.get_state_name("TechniqueMenuState").process_event(event)
 
     def open_technique_menu(self):
         """ Open menus to choose a Technique to use

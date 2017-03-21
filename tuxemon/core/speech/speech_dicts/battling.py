@@ -2,7 +2,7 @@ from core.components.game_event import *
 from main_dict import speech_dictionary
 
 fight_synonyms = ["fight", "battle", "go"]
-run_synonyms = ["run", "bye", "not again", "see you"]
+run_synonyms = ["run", "bye", "not again", "see you", "away", "by"]
 swap_synonyms = ["return", "come back", "swap"]
 potion_synonyms = ["super", "potion", "super potion"]
 

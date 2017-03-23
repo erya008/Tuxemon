@@ -127,6 +127,7 @@ class MainCombatMenuState(PopUpMenu):
             if (event.menu_item == "run"):
                 self.run()
             elif (event.menu_item == "item"):
+                print("items menu is being triggered!!!")
                 self.open_item_menu()
             elif (event.menu_item == "swap"):
                 self.open_swap_menu()

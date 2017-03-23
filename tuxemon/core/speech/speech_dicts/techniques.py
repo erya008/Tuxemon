@@ -17,6 +17,6 @@ for key in bite_synonyms:
     speech_dictionary[key + "s"] = bite_event
 for key in pound_synonyms:
     speech_dictionary[key] = pound_event
-    speech_dictionary[key + "s"] = bite_event
+    speech_dictionary[key + "s"] = pound_event
 for key in water_shot_synonyms:
     speech_dictionary[key] = water_shot_event

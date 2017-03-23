@@ -1,13 +1,13 @@
 from core.components.game_event import *
 from main_dict import speech_dictionary
 
-potion_synonyms = ["super", "duper", "potion", "lotion", "motion", "loop"]
+potion_synonyms = ["super", "duper", "potion", "lotion", "motion", "loop", "ocean"]
 ball_synonyms = ["ball", "call", "fall", "capture", "device", "advice", "rapture"]
 
 def potion_event(speech_text):
-    return pygame.event.Event(MENU_EVENT, target_menu = ["items_menu"], technique_name = "Super Potion")
+    return pygame.event.Event(MENU_EVENT, target_menu = ["items_menu"], item_name = "Super Potion")
 def ball_event(speech_text):
-    return pygame.event.Event(MENU_EVENT, target_menu = ["items_menu"], technique_name = "Capture Device")
+    return pygame.event.Event(MENU_EVENT, target_menu = ["items_menu"], item_name = "Capture Device")
 
 for key in potion_synonyms:
     speech_dictionary[key] = potion_event

@@ -107,7 +107,20 @@ class MainCombatMenuState(PopUpMenu):
             combat_state = self.game.get_state_name("CombatState")
             state = self.game.push_state("CombatTargetMenuState", player=combat_state.players[0],
                                          user=combat_state.players[0], action=item)
-            state.on_menu_selection = partial(enqueue_item, item)
+            # state.on_menu_selection = partial(enqueue_item, item)
+
+            target = None
+            for player, monsters in combat_state.monsters_in_play.items():
+                for monster in monsters:
+
+                    # TODO: more targeting classes
+                    if player != combat_state.players[0]:
+                        item = MenuItem(None, None, None, monster)
+                        target = item
+
+            print(target)
+
+            Timer(0.1, enqueue_item, args = (item, target)).start()
 
         def enqueue_item(item, menu_item):
             # enqueue the item

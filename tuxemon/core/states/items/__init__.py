@@ -6,6 +6,7 @@ from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu
 from core.components.sprite import Sprite
 from core.components.ui.text import TextArea
+from core.components.game_event import *
 
 trans = translator.translate
 
@@ -44,11 +45,20 @@ class ItemMenuState(Menu):
         self.backpack_center = self.rect.width * .16, self.rect.height * .45
         self.load_sprite("gfx/ui/item/backpack.png", center=self.backpack_center, layer=100)
 
+        print("item menu length: ")
+        print(len(self.menu_items))
+
     def process_event_hook(self, event):
-        if (event.type == MENU_EVENT and "item_menu" in event.target_menu):
-            if (event.menu_item == "super potion"):
-                print("POTION EVENT WOOOOOOOOOOO")
-                self.on_menu_selection(1)
+        if (event.type == MENU_EVENT and "items_menu" in event.target_menu):
+            print("inside items menu handler")
+            print(len(self.menu_items))
+            for i in range(0, len(self.menu_items)):
+                print("Item name: " + self.menu_items[i].game_object.name)
+
+                if (event.item_name in self.menu_items[i].game_object.name):
+                    print("Using " + event.item_name)
+                    self.change_selection(i)
+                    self.on_menu_selection(self.get_selected_item())
 
     def calc_internal_rect(self):
         # area in the screen where the item list is

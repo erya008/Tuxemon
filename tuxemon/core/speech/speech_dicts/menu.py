@@ -3,6 +3,7 @@ from main_dict import speech_dictionary
 
 
 synonyms = ["open", "menu", "then you", "than you", "okay", "man you", "men you"]
+close_menu_synonyms = ["close", "exit", "cancel"]
 monsters_synonyms = ["monsters", "monster", "pokemon"]
 bag_synonyms = ["bag", "drag", "bad", "back", "items", "item"]
 load_synonyms = ["load", "blowed"]
@@ -14,6 +15,9 @@ exit_synonyms = ["exit"]
 
 def open_world_menu_event(speech_text):
     return pygame.event.Event(OPEN_WORLD_MENU)
+
+def close_menu_event(speech_text):
+    return pygame.event.Event(MENU_EVENT, target_menu=["world_menu", "combat_menu"], menu_item="close")
 
 def monsters_event(speech_text):
     return pygame.event.Event(MENU_EVENT, target_menu=["world_menu", "combat_menu"], menu_item="monsters")
@@ -38,6 +42,9 @@ def exit_event(speech_text):
 
 for key in synonyms:
     speech_dictionary[key] = open_world_menu_event
+
+for key in close_menu_synonyms:
+    speech_dictionary[key] = close_menu_event
 
 for key in monsters_synonyms:
     speech_dictionary[key] = monsters_event

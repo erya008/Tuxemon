@@ -9,6 +9,7 @@ east_synonyms   = ["east","eastbound","he's","right"]
 south_synonyms  = ["south", "now","so","southbound","down"]
 west_synonyms   = ["west","westbound","left"]
 
+wander_synonyms = ["wander", "wonder"]
 
 number_dict ={"one":1,
     "two":2,
@@ -33,6 +34,8 @@ def south_event():
 def west_event():
     return pygame.event.Event(SIMPLE_MOVE_EVENT, direction = "W")
 
+def wander_event(speech_text):
+    return pygame.event.Event(COMPLEX_MOVE_EVENT, move_list = ["N", "E", "S", "W","N", "E", "S", "W","N", "E", "S", "W","N", "E", "S", "W","N", "E", "S", "W","N", "E", "S", "W"])
 
 def move_event(speech_text):
     list_of_moves = []
@@ -68,6 +71,8 @@ def move_event(speech_text):
         print(list_of_moves)
         return pygame.event.Event(COMPLEX_MOVE_EVENT, move_list=list_of_moves)
 
+for key in wander_synonyms:
+    speech_dictionary[key] = wander_event
 
 for key in north_synonyms:
     speech_dictionary[key] = move_event

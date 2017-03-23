@@ -6,6 +6,8 @@ synonyms = ["open", "menu", "then you", "than you", "okay", "man you", "men you"
 monsters_synonyms = ["monsters", "monster", "pokemon"]
 bag_synonyms = ["bag", "drag", "bad", "back", "items", "item"]
 load_synonyms = ["load", "blowed"]
+slot1_synonyms = ["one", "won"]
+slot2_synonyms = ["two", "to", "too"]
 save_synonyms = ["save", "see", "say", "same"]
 exit_synonyms = ["exit"]
 
@@ -21,6 +23,12 @@ def bag_event(speech_text):
 
 def load_event(speech_text):
     return pygame.event.Event(MENU_EVENT, target_menu=["world_menu"], menu_item="load")
+
+def slot1_event(speech_text):
+    return pygame.event.Event(MENU_EVENT, target_menu=["world_menu"], menu_item="slot one")
+
+def slot2_event(speech_text):
+    return pygame.event.Event(MENU_EVENT, target_menu=["world_menu"], menu_item="slot two")
 
 def save_event(speech_text):
     return pygame.event.Event(MENU_EVENT, target_menu=["world_menu"], menu_item="save")
@@ -39,6 +47,12 @@ for key in bag_synonyms:
 
 for key in load_synonyms:
     speech_dictionary[key] = load_event
+
+for key in slot1_synonyms:
+    speech_dictionary[key] = slot1_event
+
+for key in slot2_synonyms:
+    speech_dictionary[key] = slot2_event
 
 for key in save_synonyms:
     speech_dictionary[key] = save_event

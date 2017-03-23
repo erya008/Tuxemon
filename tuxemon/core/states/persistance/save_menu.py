@@ -12,6 +12,7 @@ from core.components.menu import PopUpMenu
 from core.components.menu.interface import MenuItem
 from core.components.ui import text
 from core.components.locale import translator
+from core.components.game_event import *
 trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
@@ -84,8 +85,18 @@ class SaveMenuState(PopUpMenu):
 
         return slot_image
 
+    def process_event_hook(self,event):
+        if(event.type == "MENU_EVENT"):
+            if(event.menu_item == "slot one"):
+                self.selected_index = 0
+            elif(event.menu_item == "slot two"):
+                print("IN SLOT TWO")
+                self.selected_index = 1
+
+
     def on_menu_selection(self, menuitem):
         logger.info("Saving!")
+
         try:
             save.save(self.game.player1,
                       self.capture_screenshot(),

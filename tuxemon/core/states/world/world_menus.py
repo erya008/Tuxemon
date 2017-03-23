@@ -67,6 +67,7 @@ class WorldMenuState(Menu):
                     logger.error("Unable to save game!!")
                     logger.error(e)
                     print(e)
+                self.close()
                 #self.game.replace_state("SaveMenuState")
             elif (event.menu_item == "exit"):
                 core_actions.Core().quit(self.game, None, {})

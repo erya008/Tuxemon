@@ -45,10 +45,11 @@ class ItemMenuState(Menu):
         self.backpack_center = self.rect.width * .16, self.rect.height * .45
         self.load_sprite("gfx/ui/item/backpack.png", center=self.backpack_center, layer=100)
 
-        print("item menu length: ")
-        print(len(self.menu_items))
+        #print("item menu length: ")
+        #print(len(self.menu_items))
 
     def process_event_hook(self, event):
+        print(len(self.menu_items))
         if (event.type == MENU_EVENT and "items_menu" in event.target_menu):
             print("inside items menu handler")
             print(len(self.menu_items))
@@ -59,6 +60,7 @@ class ItemMenuState(Menu):
                     print("Using " + event.item_name)
                     self.change_selection(i)
                     self.on_menu_selection(self.get_selected_item())
+                    break
 
     def calc_internal_rect(self):
         # area in the screen where the item list is

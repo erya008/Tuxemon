@@ -51,7 +51,6 @@ from threading import Timer
 
 from time import sleep
 from random import random
-from threading import Timer
 
 import pygame
 

@@ -15,6 +15,7 @@ from core.components.sprite import SpriteGroup, MenuSpriteGroup
 from core.components.technique import Technique
 from core.components.ui.draw import GraphicBox
 from core.components.game_event import *
+from threading import Timer
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -107,6 +108,28 @@ class MainCombatMenuState(PopUpMenu):
             state = self.game.push_state("CombatTargetMenuState", player=combat_state.players[0],
                                          user=combat_state.players[0], action=item)
             state.on_menu_selection = partial(enqueue_item, item)
+            print("BAMF ONE")
+
+            def printamundo():
+                print("SELECTED INDEC IS: ")
+                print(state.get_selected_item())
+                state.on_menu_selection(state.get_selected_item())
+
+            Timer(0.1, printamundo).start()
+            #state.on_menu_selection(state.get_selected_item())
+            print("BAMF TWO")
+            # target = None
+            # for player, monsters in combat_state.monsters_in_play.items():
+            #     for monster in monsters:
+            #
+            #         # TODO: more targeting classes
+            #         if player != combat_state.players[0]:
+            #             item = MenuItem(None, None, None, monster)
+            #             target = item
+            #
+            # print(target)
+            #
+            #Timer(0.1, enqueue_item, args = (item, target)).start()
 
         def enqueue_item(item, menu_item):
             # enqueue the item
@@ -126,11 +149,16 @@ class MainCombatMenuState(PopUpMenu):
             if (event.menu_item == "run"):
                 self.run()
             elif (event.menu_item == "item"):
+                print("items menu is being triggered!!!")
                 self.open_item_menu()
             elif (event.menu_item == "swap"):
                 self.open_swap_menu()
             elif (event.menu_item == "fight"):
                 self.open_technique_menu()
+        elif (event.type == MENU_EVENT and "technique_menu" in event.target_menu):
+            print("we made bois")
+            self.open_technique_menu()
+            self.game.get_state_name("TechniqueMenuState").process_event(event)
 
     def open_technique_menu(self):
         """ Open menus to choose a Technique to use
@@ -164,7 +192,20 @@ class MainCombatMenuState(PopUpMenu):
             state = self.game.push_state("CombatTargetMenuState",player=combat_state.players[0],
                                          user=self.monster, action=technique)
             #state.on_menu_selection = partial(enqueue_technique, technique)
-            enqueue_technique(technique, state.get_selected_item())
+            #state.change_selection(0);
+
+            target = None
+            for player, monsters in combat_state.monsters_in_play.items():
+                for monster in monsters:
+
+                    # TODO: more targeting classes
+                    if player != combat_state.players[0]:
+                        item = MenuItem(None, None, None, monster)
+                        target = item
+
+            print(target)
+
+            Timer(0.1, enqueue_technique, args = (technique, target)).start()
 
         def enqueue_technique(technique, menu_item):
             # enqueue the technique

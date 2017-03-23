@@ -49,6 +49,7 @@ logger = logging.getLogger(__name__)
 
 
 def save(player, screenshot, slot, game):
+    print("IN SAVE")
     """Saves the current game state to a file using shelve.
 
     :param player: The player object that contains data to save.

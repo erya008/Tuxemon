@@ -13,6 +13,7 @@ from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu
 from core.components.locale import translator
 from core.components.game_event import *
+from core.components import save
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -55,7 +56,18 @@ class WorldMenuState(Menu):
             elif (event.menu_item == "load"):
                 self.game.replace_state("LoadMenuState")
             elif (event.menu_item == "save"):
-                self.game.replace_state("SaveMenuState")
+                logger.info("Saving!")
+
+                try:
+                    save.save(self.game.player1,
+                            self.capture_screenshot(),
+                            1,
+                            self.game)
+                except Exception as e:
+                    logger.error("Unable to save game!!")
+                    logger.error(e)
+                    print(e)
+                #self.game.replace_state("SaveMenuState")
             elif (event.menu_item == "exit"):
                 core_actions.Core().quit(self.game, None, {})
 
@@ -194,3 +206,10 @@ class WorldMenuState(Menu):
         """
         ani = self.animate(self.rect, x=prepare.SCREEN_SIZE[0], duration=.50)
         return ani
+
+#####################################################################################################################
+    def capture_screenshot(self):
+        screenshot = pygame.Surface(self.game.screen.get_size())
+        world = self.game.get_state_name("WorldState")
+        world.draw(screenshot)
+        return screenshot

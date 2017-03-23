@@ -4,6 +4,7 @@ from collections import namedtuple
 from core import prepare
 from core.components import save
 from .save_menu import SaveMenuState
+from core.components.game_event import *
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -12,8 +13,16 @@ logger.debug("%s successfully imported" % __name__)
 
 class LoadMenuState(SaveMenuState):
     def on_menu_selection(self, menuitem):
+        #if(event.type == "MENU_EVENT"):
+        #    if(event.menu_item == "slot one"):
+        #        self.selected_index = 0
+        #    elif(event.menu_item == "slot two"):
+        #        self.selected_index = 1
+
         try:
             save_data = save.load(self.selected_index + 1)
+
+
 
         except Exception as e:
             logger.error(e)

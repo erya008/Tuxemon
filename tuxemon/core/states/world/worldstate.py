@@ -348,7 +348,7 @@ class WorldState(state.State):
 
         # Fill the screen _background with black
         surface.fill((0, 0, 0))
-
+        
         self.map_drawing(surface)
         self.player_movement()
         self.high_map_drawing(surface)

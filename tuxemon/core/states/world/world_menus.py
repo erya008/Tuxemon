@@ -47,7 +47,7 @@ class WorldMenuState(Menu):
 
     def process_event_hook(self, event):
         if(event.type == MENU_EVENT):
-            if(event.menu_item == "open"):
+            if(event.menu_item == "close"):
                 self.close()
             elif (event.menu_item == "monsters"):
                 self.open_monster_menu()

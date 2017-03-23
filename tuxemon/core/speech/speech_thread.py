@@ -15,7 +15,8 @@ from speech_dicts import *
 class SpeechThread:
 
     def __init__(self):
-        self.text = "nope"
+        self.text = ""
+        self.processing = False
 
     def add_observer(self, observer):
         self.observer = observer
@@ -44,19 +45,26 @@ class SpeechThread:
     def get_last_text(self):
         return self.text
 
+    def is_processing(self):
+        return self.processing
+
     def speech_thread(self):
         filepath = os.getenv('APPDATA') + "/speech.wav";
         file = open(filepath, 'w+')
         file.close()
         while 1:
             try:
-                if (self.observer != None):
-                    self.observer.notify(self)
                 #time.sleep(1)
+                self.processing = False
+                self.notify_observers()
+
                 recorder = Recorder(filepath)
 
                 print("Please say something nice into the microphone\n")
                 recorder.record_to_file()
+
+                self.processing = True
+                self.notify_observers()
 
                 print("Transcribing audio....\n")
                 result = self.transcribe_audio(filepath)
@@ -64,6 +72,9 @@ class SpeechThread:
                 text = result['results'][0]['alternatives'][0]['transcript']
                 self.text = text.strip()
                 print("text is: " + self.text);
+
+                self.processing = False
+                self.notify_observers()
 
 
                 parse_speech(self.text)
@@ -78,3 +89,8 @@ class SpeechThread:
             except IndexError, e:
                 print(e)
         return
+
+    def notify_observers(self):
+        print("NOTIFING")
+        if (self.observer != None):
+            self.observer.notify(self)

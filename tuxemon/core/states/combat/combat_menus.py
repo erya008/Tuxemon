@@ -109,6 +109,13 @@ class MainCombatMenuState(PopUpMenu):
                                          user=combat_state.players[0], action=item)
             state.on_menu_selection = partial(enqueue_item, item)
             print("BAMF ONE")
+
+            def printamundo():
+                print("SELECTED INDEC IS: ")
+                print(state.get_selected_item())
+                state.on_menu_selection(state.get_selected_item())
+
+            Timer(0.1, printamundo).start()
             #state.on_menu_selection(state.get_selected_item())
             print("BAMF TWO")
             # target = None

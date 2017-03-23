@@ -31,7 +31,7 @@ from collections import namedtuple
 from functools import partial
 from . import prepare
 from core.components.game_event import *
-from .speech import speech_thread
+from .speech import SpeechThread
 
 import threading
 from threading import Timer
@@ -89,14 +89,7 @@ def main():
     Player().add_item(control, add_item('item_super_potion', 20), 0)
     Player().add_item(control, add_item('item_super_potion', 20), 0)
 
-    t = threading.Thread(target=speech_thread)
-
-    try:
-        t.start()
-    except (KeyboardInterrupt, SystemExit):
-        t.stop()
-        sys.exit()
-
+    
 
 
     # def TEST_FUNC():

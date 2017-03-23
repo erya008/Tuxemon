@@ -18,7 +18,11 @@ from .platform import android
 from .state import StateManager
 from .tools import logger
 
+
 from threading import Timer
+from .speech import SpeechThread
+from .speech import SpeechView
+
 
 
 class Control(StateManager):
@@ -163,6 +167,16 @@ class Control(StateManager):
         self.rumble_manager = rumble.RumbleManager()
         self.rumble = self.rumble_manager.rumbler
 
+        self.speech_view = SpeechView()
+        self.speech_thread = SpeechThread()
+        self.speech_thread.add_observer(self.speech_view)
+        self.speech_thread.start()
+
+
+
+
+
+
         #def myFunction():
         #    pygame.event.post(pygame.event.Event(MENU_EVENT))
 
@@ -234,6 +248,10 @@ class Control(StateManager):
             # another state have have popped it during an update
             if state in self.active_states:
                 state.draw(self.screen)
+
+
+
+        self.speech_view.draw(self.screen)
 
         if self.config.controller_overlay == "1":
             self.controller.draw(self)

@@ -159,6 +159,12 @@ class MainCombatMenuState(PopUpMenu):
             print("we made bois")
             self.open_technique_menu()
             self.game.get_state_name("TechniqueMenuState").process_event(event)
+        elif (event.type == MENU_EVENT and "items_menu" in event.target_menu):
+            self.open_item_menu()
+            def process_event_in_item_menu():
+                print("after timer delay")
+                self.game.get_state_name("ItemMenuState").process_event(event)
+            Timer(0.5, process_event_in_item_menu).start()
 
     def open_technique_menu(self):
         """ Open menus to choose a Technique to use

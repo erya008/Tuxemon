@@ -33,10 +33,12 @@ from __future__ import division
 
 # Import various python libraries
 import logging
+import subprocess
 import time
 import math
 import sys
 import itertools
+from core.speech import*
 from six.moves import range
 from six.moves import map as imap
 from functools import partial
@@ -52,6 +54,7 @@ from threading import Timer
 from time import sleep
 from random import random
 
+
 import pygame
 
 # Import Tuxemon internal libraries
@@ -62,6 +65,9 @@ from core.components.game_event import *
 from core.components import map
 from core.components import networking
 from core.components.animation import Task
+from pygame.locals import *
+from core.components.ui import text
+from core.components.locale import translator
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -343,6 +349,7 @@ class WorldState(state.State):
 
 
     def draw(self, surface):
+        global speech_begins_checker
         self.screen = surface
 
         # Fill the screen _background with black
@@ -354,7 +361,19 @@ class WorldState(state.State):
         self.midscreen_animations(surface)
         self.fullscreen_animations(surface)
 
+
+        BLUE= (0, 0, 255)
+        BLACK = (0,0,0)
+
+        self.font = pygame.font.SysFont('Arial', 25)
+        #pygame.draw.rect(self.game.screen, BLUE, (200, 150, 100, 100), 100)
+        #if(speech_begins_checker==True):
+            #self.screen.blit(self.font.render('Speak', True, (255,0,0)), (200, 100))
+        #else:
+            #self.screen.blit(self.font.render('Dont Speak', True, (255,0,0)), (200, 100))
+
     def process_event(self, event):
+        global speech_begins_checker
         """Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
@@ -373,13 +392,31 @@ class WorldState(state.State):
 
 
         if event.type == COMPLEX_MOVE_EVENT:
+            trans=translator.translate
+
+
+            #open_dialog(self.game,text)
+            #open_dialog(self.game, [trans('save_failure')])
+            open_dialog(self.game,[trans('save_failure')])
+
+            #self.draw()
+            #BLUE= (0, 0, 255)
+            #pygame.draw.rect(self.game.screen, BLUE, (200, 150, 100, 50), 100)
+            #surface1 =pygame.Surface(width,height)
+            #rect = surface.get_rect()
+            #self.draw1(self,surface1,rect)
+
             i=0
 
 
             a=event.move_list
             print(a)
 
+
+
             def con_moves(i):
+
+
                 print(i)
                 if (i == len(a)):
                     self.stop_moving()

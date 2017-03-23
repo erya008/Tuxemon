@@ -13,6 +13,8 @@ from .components import networking
 from .components import rumble
 from .components.game_event import *
 from .platform import android
+import pygame
+from pygame.locals import *
 
 # from .components.combat import CombatEngine, CombatRouter
 from .state import StateManager
@@ -190,6 +192,7 @@ class Control(StateManager):
 
 
     def update(self, dt):
+        global speech_prompt
         """Checks if a state is done or has called for a game quit.
         State is flipped if neccessary and State.update is called. This
         also calls the currently active state's "update" function each
@@ -235,6 +238,7 @@ class Control(StateManager):
             if draw:
                 to_draw.append(state)
 
+
             # if this state covers the screen
             # break here so lower screens are not drawn
             if (not state.transparent
@@ -255,7 +259,12 @@ class Control(StateManager):
 
         if self.config.controller_overlay == "1":
             self.controller.draw(self)
+        BLUE= (0, 0, 255)
+        BLACK = (0,0,0)
 
+        self.font = pygame.font.SysFont('Arial', 25)
+        #pygame.draw.rect(self.game.screen, BLUE, (200, 150, 100, 100), 100)
+        self.screen.blit(self.font.render('Speak', True, (255,0,0)), (200, 100))
     def gather_events(self):
         """ Collect  all events and iterate them.  No logic should be processed here.
 

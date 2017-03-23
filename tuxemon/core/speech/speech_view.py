@@ -8,7 +8,6 @@ class SpeechView:
 
     def draw(self, screen):
         self.font = pygame.font.SysFont('Arial', 36)
-
         screen.blit(self.font.render(self.voice_text, True, (0,0,0)), (200, 100))
         #print("Drawing inside speech view")
 

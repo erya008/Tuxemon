@@ -3,7 +3,7 @@ from main_dict import speech_dictionary
 
 
 synonyms = ["open", "menu", "then you", "than you", "okay", "man you", "men you"]
-close_menu_synonyms = ["close"]
+close_menu_synonyms = ["close", "exit", "cancel"]
 monsters_synonyms = ["monsters", "monster", "pokemon"]
 bag_synonyms = ["bag", "drag", "bad", "back", "items", "item"]
 load_synonyms = ["load", "blowed"]

@@ -401,8 +401,8 @@ class Menu(state.State):
         """
         self.process_event_hook(event)
 
-        if (event.type == MENU_EVENT and event.menu_item == "close" and self.escape_key_exits):
-            self.close()
+        #if (event.type == MENU_EVENT and event.menu_item == "close" and self.escape_key_exits):
+        #    self.close()
 
         if event.type == pygame.KEYDOWN:
 

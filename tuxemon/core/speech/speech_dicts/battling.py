@@ -1,10 +1,9 @@
 from core.components.game_event import *
-from main_dict import speech_dictionary
+from main_dict import add_speech_event, add_speech_event_plural
 
 fight_synonyms = ["fight", "battle", "go"]
-run_synonyms = ["run", "bye", "not again", "see you", "away", "by"]
+run_synonyms = ["run", "not again", "see you", "away"]
 swap_synonyms = ["return", "come back", "swap"]
-items_synonyms = ["item", "bag"]
 
 def fight_event(speech_text):
     return pygame.event.Event(MENU_EVENT, target_menu = ["combat_menu"], menu_item = "fight")
@@ -17,11 +16,10 @@ def items_event(speech_text):
     return pygame.event.Event(MENU_EVENT, target_menu = ["combat_menu"], menu_item = "item")
 
 for key in fight_synonyms:
-    speech_dictionary[key] = fight_event
+    add_speech_event(key, fight_event)
 for key in run_synonyms:
-    speech_dictionary[key] = run_event
+    add_speech_event(key, run_event)
 for key in swap_synonyms:
-    speech_dictionary[key] = swap_event
-for key in items_synonyms:
-    speech_dictionary[key] = items_event
-    speech_dictionary[key + "s"] = items_event
+    add_speech_event(key, swap_event)
+#for key in items_synonyms:
+#    add_speech_event_plural(key, items_event)

@@ -334,7 +334,7 @@ class Menu(state.State):
         if not self.transparent:
             self.window.draw(surface, self.rect)
 
-        if self._show_contents:
+        if self._show_contents and self.menu_items!=None:
             self.menu_items.draw(surface)
             self.menu_sprites.draw(surface)
 
@@ -402,7 +402,7 @@ class Menu(state.State):
         self.process_event_hook(event)
 
         #if (event.type == MENU_EVENT and event.menu_item == "close" and self.escape_key_exits):
-        #    self.close()
+            #self.close()
 
         if event.type == pygame.KEYDOWN:
 

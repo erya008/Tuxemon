@@ -1,5 +1,7 @@
 import pygame
+from core import prepare
 from threading import Timer
+import time
 class SpeechView:
     screen_text = "no speech text here"
 
@@ -11,6 +13,10 @@ class SpeechView:
         self.dot_count = 0;
         self.processing = False;
         self.control_dots()
+        self.processing_sprite = [None] * 10
+        self.mic_image = pygame.image.load(prepare.BASEDIR + "resources/interface/listening.png")
+        for i in range(0,9):
+            self.processing_sprite[i] = pygame.image.load(prepare.BASEDIR + "resources/interface/proc"+str(i)+".png")
 
 
     def draw(self, screen):
@@ -18,9 +24,10 @@ class SpeechView:
 
 
         if (self.processing):
-            screen.blit(self.font.render(self.get_dot_text(), True, self.font_color), (100,600))
+            #screen.blit(self.processing_sprite[int(round(time.time()*1000))/100])
         else:
-            screen.blit(self.font.render("Listening...", True, self.font_color), (100,600))
+            #screen.blit(self.font.render("Listening...", True, self.font_color), (100,600))
+            screen.blit(self.mic_image, (100,500))
         #print("Drawing inside speech view")
 
     def notify(self, other):

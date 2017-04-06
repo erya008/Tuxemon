@@ -1,4 +1,5 @@
 import pygame
+from core import prepare
 from threading import Timer
 class SpeechView:
     screen_text = "no speech text here"
@@ -14,7 +15,7 @@ class SpeechView:
 
 
     def draw(self, screen):
-        ear_image = pygame.image.load('C:\Users\Reed\Documents\Natural User Interface\ear.jfif')
+        mic_image = pygame.image.load(prepare.BASEDIR + "resources/interface/listening.png")
         screen.blit(self.font.render(self.voice_text, True, self.font_color), (100,550))
 
 
@@ -22,7 +23,7 @@ class SpeechView:
             screen.blit(self.font.render(self.get_dot_text(), True, self.font_color), (100,600))
         else:
             #screen.blit(self.font.render("Listening...", True, self.font_color), (100,600))
-            screen.blit(ear_image, (100,500))
+            screen.blit(mic_image, (100,500))
         #print("Drawing inside speech view")
 
     def notify(self, other):

@@ -1,5 +1,5 @@
 from core.components.game_event import *
-from main_dict import speech_dictionary
+from main_dict import add_speech_event
 
 synonyms = ["stop"]
 
@@ -8,4 +8,4 @@ def stop_event(speech_text):
 
 
 for key in synonyms:
-    speech_dictionary[key] = stop_event
+    add_speech_event(key, stop_event)

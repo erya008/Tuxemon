@@ -1,5 +1,5 @@
 from core.components.game_event import *
-from main_dict import speech_dictionary
+from main_dict import add_speech_event, add_speech_event_plural
 
 
 synonyms = ["open", "menu", "then you", "than you", "okay", "man you", "men you"]
@@ -10,7 +10,6 @@ load_synonyms = ["load", "blowed"]
 slot1_synonyms = ["one", "won"]
 slot2_synonyms = ["two", "to", "too"]
 save_synonyms = ["save", "see", "say", "same"]
-exit_synonyms = ["exit"]
 
 
 def open_world_menu_event(speech_text):
@@ -41,28 +40,25 @@ def exit_event(speech_text):
     return pygame.event.Event(MENU_EVENT, target_menu=["world_menu"], menu_item="exit")
 
 for key in synonyms:
-    speech_dictionary[key] = open_world_menu_event
+    add_speech_event(key, open_world_menu_event)
 
 for key in close_menu_synonyms:
-    speech_dictionary[key] = close_menu_event
+    add_speech_event(key, close_menu_event)
 
 for key in monsters_synonyms:
-    speech_dictionary[key] = monsters_event
+    add_speech_event(key, monsters_event)
 
 for key in bag_synonyms:
-    speech_dictionary[key] = bag_event
+    add_speech_event(key, bag_event)
 
 for key in load_synonyms:
-    speech_dictionary[key] = load_event
+    add_speech_event(key, load_event)
 
 for key in slot1_synonyms:
-    speech_dictionary[key] = slot1_event
+    add_speech_event(key, slot1_event)
 
 for key in slot2_synonyms:
-    speech_dictionary[key] = slot2_event
+    add_speech_event(key, slot2_event)
 
 for key in save_synonyms:
-    speech_dictionary[key] = save_event
-
-for key in exit_synonyms:
-    speech_dictionary[key] = exit_event
+    add_speech_event(key, save_event)

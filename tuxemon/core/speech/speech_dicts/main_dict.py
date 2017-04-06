@@ -5,8 +5,17 @@ import time
 global numbers
 global my_dict
 
-
 speech_dictionary = {}
+
+def add_speech_event(key, event):
+    if (key in speech_dictionary):
+        print("&&&&&&&&&&&&&&&&&&----COLLISION----" + key);
+    else:
+        speech_dictionary[key] = event;
+
+def add_speech_event_plural(key, event):
+    add_speech_event(key, event)
+    add_speech_event(key + "s", event)
 
 def parse_speech(text):
     print("TextKey: " + text)

@@ -1,5 +1,5 @@
 from core.components.game_event import *
-from main_dict import speech_dictionary
+from main_dict import add_speech_event, add_speech_event_plural
 import time
 
 
@@ -72,19 +72,16 @@ def move_event(speech_text):
         return pygame.event.Event(COMPLEX_MOVE_EVENT, move_list=list_of_moves)
 
 for key in wander_synonyms:
-    speech_dictionary[key] = wander_event
+    add_speech_event(key, wander_event)
 
 for key in north_synonyms:
-    speech_dictionary[key] = move_event
-
+    add_speech_event(key, move_event)
 
 for key in east_synonyms:
-    speech_dictionary[key] = move_event
-
+    add_speech_event(key, move_event)
 
 for key in south_synonyms:
-    speech_dictionary[key] = move_event
-
+    add_speech_event(key, move_event)
 
 for key in west_synonyms:
-    speech_dictionary[key] = move_event
+    add_speech_event(key, move_event)

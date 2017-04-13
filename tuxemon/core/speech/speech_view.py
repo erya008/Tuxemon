@@ -24,6 +24,7 @@ class SpeechView:
 
 
         if (self.processing):
+            return 
             #screen.blit(self.processing_sprite[int(round(time.time()*1000))/100])
         else:
             #screen.blit(self.font.render("Listening...", True, self.font_color), (100,600))

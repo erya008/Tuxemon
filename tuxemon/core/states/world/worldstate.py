@@ -28,6 +28,8 @@
 # core.states.world Handles the world map and player movement.
 #
 #
+
+
 from __future__ import print_function
 from __future__ import division
 
@@ -68,6 +70,15 @@ from core.components.animation import Task
 from pygame.locals import *
 from core.components.ui import text
 from core.components.locale import translator
+
+import logging
+import re
+from collections import namedtuple
+
+from core.components.pyganim import PygAnimation
+from core.components.event import Action
+from core.components.event import Condition
+from core.components.event import EventObject
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -486,6 +497,8 @@ class WorldState(state.State):
                 self.game.push_state("WorldMenuState")
             # If we receive an arrow key press, set the facing and
             # moving direction to that direction
+
+
             if event.key == pygame.K_UP:
                 self.player1.direction["up"] = True
                 self.player1.facing = "up"

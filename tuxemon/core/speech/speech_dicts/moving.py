@@ -23,16 +23,16 @@ number_dict ={"one":1,
 
 
 def north_event():
-    return pygame.event.Event(SIMPLE_MOVE_EVENT, direction = "N")
+    return pygame.event.Event(COMPLEX_MOVE_EVENT, move_list = ["N","N","N","N","N"])
 
 def east_event():
-    return pygame.event.Event(SIMPLE_MOVE_EVENT, direction = "E")
+    return pygame.event.Event(COMPLEX_MOVE_EVENT, move_list = ["E","E","E","E","E","E","E","E"])
 
 def south_event():
-    return pygame.event.Event(SIMPLE_MOVE_EVENT, direction = "S")
+    return pygame.event.Event(COMPLEX_MOVE_EVENT, move_list = ["S","S","S","S","S"])
 
 def west_event():
-    return pygame.event.Event(SIMPLE_MOVE_EVENT, direction = "W")
+    return pygame.event.Event(COMPLEX_MOVE_EVENT, move_list = ["W","W","W","W","W","W","W","W"])
 
 def wander_event(speech_text):
     return pygame.event.Event(COMPLEX_MOVE_EVENT, move_list = ["N", "E", "S", "W","N", "E", "S", "W","N", "E", "S", "W","N", "E", "S", "W","N", "E", "S", "W","N", "E", "S", "W"])

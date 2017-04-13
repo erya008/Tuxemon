@@ -52,12 +52,12 @@ class Recorder:
         snd_data.reverse()
         return snd_data
 
-    def add_silence(self, snd_data, seconds):
-        "Add silence to the start and end of 'snd_data' of length 'seconds' (float)"
-        r = array('h', [0 for i in range(int(seconds*self.rate))])
-        r.extend(snd_data)
-        r.extend([0 for i in range(int(seconds*self.rate))])
-        return r
+    # def add_silence(self, snd_data, seconds):
+    #     "Add silence to the start and end of 'snd_data' of length 'seconds' (float)"
+    #     r = array('h', [0 for i in range(int(seconds*self.rate))])
+    #     r.extend(snd_data)
+    #     r.extend([0 for i in range(int(seconds*self.rate))])
+    #     return r
 
     def record(self):
         """
@@ -93,7 +93,7 @@ class Recorder:
             elif not silent and not snd_started:
                 snd_started = True
 
-            if snd_started and num_silent > 80:
+            if snd_started and num_silent > 40:
                 break
 
         sample_width = p.get_sample_size(self.format)
@@ -103,7 +103,7 @@ class Recorder:
 
         r = self.normalize(r)
         r = self.trim(r)
-        r = self.add_silence(r, 0.5)
+        #r = self.add_silence(r, 0.5)
         return sample_width, r
 
     def record_to_file(self):

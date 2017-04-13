@@ -334,7 +334,7 @@ class Menu(state.State):
         if not self.transparent:
             self.window.draw(surface, self.rect)
 
-        if self._show_contents and self.menu_items!=None:
+        if self._show_contents and self.menu_items!=None and self.menu_sprites!=None:
             self.menu_items.draw(surface)
             self.menu_sprites.draw(surface)
 

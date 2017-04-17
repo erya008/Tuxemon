@@ -1,6 +1,7 @@
 import pygame
 from core import prepare
 from threading import Timer
+from time import sleep
 import time
 class SpeechView:
     screen_text = "no speech text here"
@@ -20,12 +21,13 @@ class SpeechView:
 
 
     def draw(self, screen):
-        screen.blit(self.font.render(self.voice_text, True, self.font_color), (100,550))
+        #screen.blit(self.font.render(self.voice_text, True, self.font_color), (100,550))
 
 
         if (self.processing):
-            return 
-            #screen.blit(self.processing_sprite[int(round(time.time()*1000))/100])
+            for i in range(0,9):
+                screen.blit(self.processing_sprite[i], (100,500))
+                sleep(0.1)
         else:
             #screen.blit(self.font.render("Listening...", True, self.font_color), (100,600))
             screen.blit(self.mic_image, (100,500))

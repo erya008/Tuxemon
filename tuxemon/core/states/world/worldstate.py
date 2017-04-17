@@ -92,6 +92,7 @@ class WorldState(state.State):
 
     def startup(self):
         # Provide access to the screen surface
+        self.isStopped = False;
         self.screen = self.game.screen
         self.screen_rect = prepare.SCREEN_RECT
 
@@ -403,6 +404,7 @@ class WorldState(state.State):
 
 
         if event.type == COMPLEX_MOVE_EVENT:
+            self.isStopped = False;
             trans=translator.translate
 
 
@@ -466,6 +468,7 @@ class WorldState(state.State):
         elif (event.type == OPEN_WORLD_MENU):
             self.game.push_state("WorldMenuState")
         elif event.type == SIMPLE_MOVE_EVENT:
+            self.isStopped = False;
             if event.direction == "S":
                 self.stop_moving()
                 self.player1.direction["down"] = True
@@ -500,15 +503,19 @@ class WorldState(state.State):
 
 
             if event.key == pygame.K_UP:
+                self.isStopped = False;
                 self.player1.direction["up"] = True
                 self.player1.facing = "up"
             if event.key == pygame.K_DOWN:
+                self.isStopped = False;
                 self.player1.direction["down"] = True
                 self.player1.facing = "down"
             if event.key == pygame.K_LEFT:
+                self.isStopped = False;
                 self.player1.direction["left"] = True
                 self.player1.facing = "left"
             if event.key == pygame.K_RIGHT:
+                self.isStopped = False;
                 self.player1.direction["right"] = True
                 self.player1.facing = "right"
             if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
@@ -550,6 +557,7 @@ class WorldState(state.State):
 
     def stop_moving(self):
         print("we are in stop moving")
+        self.isStopped = True;
         self.player1.direction["up"] = False;
         self.player1.direction["right"] = False;
         self.player1.direction["down"] = False;

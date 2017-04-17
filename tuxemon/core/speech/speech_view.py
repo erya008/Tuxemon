@@ -25,7 +25,6 @@ class SpeechView:
 
 
         if (self.processing):
-            print(self.dot_count)
             screen.blit(self.processing_sprite[self.dot_count], (100,500))
         else:
             #screen.blit(self.font.render("Listening...", True, self.font_color), (100,600))

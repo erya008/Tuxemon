@@ -318,6 +318,8 @@ class Menu(state.State):
             self.fit_border()
 
     def draw(self, surface):
+        if (self == None):
+            return
         """ Draws the menu object to a pygame surface.
 
         :param surface: Surface to draw on

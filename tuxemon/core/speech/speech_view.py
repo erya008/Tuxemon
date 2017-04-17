@@ -25,9 +25,8 @@ class SpeechView:
 
 
         if (self.processing):
-            for i in range(0,9):
-                screen.blit(self.processing_sprite[i], (100,500))
-                sleep(0.1)
+            print(self.dot_count)
+            screen.blit(self.processing_sprite[self.dot_count], (100,500))
         else:
             #screen.blit(self.font.render("Listening...", True, self.font_color), (100,600))
             screen.blit(self.mic_image, (100,500))
@@ -46,7 +45,5 @@ class SpeechView:
         return output
 
     def control_dots(self):
-        self.dot_count = self.dot_count + 1;
-        if (self.dot_count == 4):
-            self.dot_count = 1;
-        Timer(0.3, self.control_dots).start()
+        self.dot_count = (self.dot_count + 1) % 9;
+        Timer(0.1, self.control_dots).start()

@@ -1,7 +1,7 @@
-Tuxemon 0.3.2
+Pokemon Voz 
 =========
 
-Tuxemon is a free, open source monster-fighting RPG.
+A voice controlled pokemon prototype based on Tuxemon 0.3.2
 
 ![screenshot](http://www.tuxemon.org/images/featurette-01.png)
 
@@ -77,29 +77,4 @@ Controls
 * *Enter* - Select/activate
 * *ESC* - Menu/Cancel
 
-##### Map Editor
 
-Use *Tiled* map editor: http://www.mapeditor.org/
-
-License
-----
-
-GPL v3
-
-Copyright (C) 2016 William Edwards <shadowapex@gmail.com>,     
-Benjamin Bean <superman2k5@gmail.com>
-
-This software is distributed under the GNU General Public Licence as published
-by the Free Software Foundation.  See the file [LICENSE](LICENSE) for the conditions
-under which this software is made available.  Tuxemon also contains code from
-other sources.
-
-External links
-----
-
-* Official website: [tuxemon.org](http://www.tuxemon.org)
-* Official forum: [forum.tuxemon.org](http://forum.tuxemon.org/)
-* IRC: [#tuxemon](ircs://chat.freenode.net/#tuxemon)
-* Reddit: [/r/Tuxemon](https://www.reddit.com/r/tuxemon)
-* YouTube: [Tuxemon](https://www.youtube.com/channel/UC6BJ6H7dB2Dpb8wzcYhDU3w)
-* Google Plus: [+TuxemonOrg](https://plus.google.com/u/0/+TuxemonOrg)
